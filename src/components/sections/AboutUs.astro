@@ -1,0 +1,36 @@
+---
+import Info from "../cards/Info.astro";
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import Title from "../shared/Title.astro";
+---
+
+<section id="about-us">
+    <Container className="flex flex-col midmd:flex-row gap-10 lg:gap-12">
+        <div
+            class="flex-1 flex midmd:w-7/12 lg:w-1/2 flex-col items-center justify-center text-center"
+        >
+            <Title> The Impact of Social Media on Heavy Machinery Sales </Title>
+            <div
+                class="flex items-center justify-center min-h-screen aspect-[16/9] mt-6"
+            >
+                <div
+                    class="relative w-full max-w-[600px]"
+                    style="padding-top:56.25%;"
+                >
+                    <iframe
+                        src="https://player.vimeo.com/video/1046200266?badge=0&autopause=0&player_id=0&app_id=58479"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                        title="caseStudy"
+                        class="absolute top-0 left-0 w-full h-full"
+                    >
+                    </iframe>
+                </div>
+            </div>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+        </div>
+
+        <script src="https://player.vimeo.com/api/player.js"></script>
+    </Container>
+</section>

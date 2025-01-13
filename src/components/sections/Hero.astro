@@ -1,0 +1,65 @@
+---
+import Button from "../shared/Button.astro";
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import ByNumber from "./ByNumber.astro";
+---
+
+<section class="relative pt-32 lg:pt-36">
+    <Container className={"flex flex-col lg:flex-row gap-10 lg:gap-12"}>
+        <!-- Absolute decorations -->
+        <div class="absolute w-full lg:w-1/2 inset-y-0 lg:right-0">
+            <span
+                class="absolute -left-6 md:left-4 top-24 lg:top-28 w-24 h-24 rotate-90 skew-x-12 rounded-3xl bg-gradient-to-br from-[#FFC400] via-[#E5B300] to-[#BF9600] blur-xl opacity-60 lg:opacity-95 lg:block hidden"
+            ></span>
+            <span
+                class="absolute right-4 bottom-12 w-24 h-24 rounded-3xl bg-gradient-to-br from-[#FFC400] via-[#E5B300] to-[#BF9600] blur-xl opacity-80"
+            ></span>
+        </div>
+        <span
+            class="w-4/12 lg:w-2/12 aspect-square bg-gradient-to-tr from-[#FFC400] via-[#E5B300] to-[#BF9600] absolute -top-5 lg:left-0 rounded-full skew-y-12 blur-2xl opacity-40 skew-x-12 rotate-90"
+        ></span>
+
+        <!-- Text Content -->
+        <div
+            class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8
+                   lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2"
+        >
+            <h1
+                class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight xl:text-6xl/tight font-bold text-heading-1"
+            >
+                Maximize Your Heavy Machinery
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-br from-[#FFC400] via-[#E5B300] to-[#BF9600]"
+                >
+                    Sales & Rentals
+                </span>
+
+                Online
+            </h1>
+            <Paragraph className="mt-8">
+                Stop settling for average. You’re in the business of heavy
+                machinery, high-ticket items that demand expert marketing. We
+                specialize in supercharging your online presence, delivering
+                qualified leads, and securing lucrative contracts for both B2C
+                and B2B heavy machinery dealerships.
+            </Paragraph>
+
+            <div data-tf-live="01JGSEM6P7PDJFDYG46XB1JB9K" class="mt-8"></div>
+            <script is:inline src="//embed.typeform.com/next/embed.js"></script>
+        </div>
+        <div class="flex items-stretch lg:justify-center w-full lg:w-1/2">
+            <div
+                class="relative w-full lg:max-w-[1200px] aspect-[9/16] lg:aspect-[16/9] rounded-xl overflow-hidden"
+            >
+                <iframe
+                    src="https://player.vimeo.com/video/1045802804?badge=0&autopause=0&player_id=0&app_id=58479"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                    title="caseStudy"
+                    class="absolute top-0 left-0 w-full h-full rounded-xl"
+                ></iframe>
+            </div>
+        </div>
+    </Container>
+</section>

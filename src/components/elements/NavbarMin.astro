@@ -1,0 +1,58 @@
+---
+import BtnLink from "../shared/BtnLink.astro";
+import Container from "../shared/Container.astro";
+import Navitem from "../shared/Navitem.astro";
+
+const navItems = [
+    // {
+    //     href: "/#",
+    //     text: "Home",
+    // },
+    // {
+    //     href: "/#services",
+    //     text: "Benefits",
+    // },
+    // {
+    //     href: "/#about-us",
+    //     text: "Case study",
+    // },
+    // {
+    //     href: "/#features",
+    //     text: "Features",
+    // },
+    // {
+    //     href: "/resources",
+    //     text: "Resources",
+    // },
+    // {
+    //     href: "/#footer",
+    //     text: "Contact Us",
+    // },
+];
+---
+
+<header class="absolute inset-x-0 top-0 z-50 py-6">
+    <Container>
+        <nav class="w-full flex justify-between gap-6 relative">
+            <!-- logo -->
+            <div class="min-w-max inline-flex relative">
+                <img
+                    class="logo"
+                    src="/public/images/Resloup.svg"
+                    alt="Logo Resloup"
+                />
+            </div>
+        </nav>
+    </Container>
+</header>
+
+<style>
+    .logo {
+        width: 10vw;
+        min-width: 140px;
+    }
+
+    .logo-dark {
+        filter: invert(1); /* Fully inverted */
+    }
+</style>

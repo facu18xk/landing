@@ -1,0 +1,64 @@
+---
+import Button from "../shared/Button.astro";
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+---
+
+<section id="cta" class="pb-20">
+  <Container>
+    <div
+      class="w-full relative py-8 md:py-10 px-6 md:px-8 rounded-2xl bg-white/30 backdrop-blur-md shadow-lg"
+    >
+      <div class="absolute right-0 top-0 h-full w-full flex justify-end">
+        <div class="w-28 h-28 overflow-auto flex rounded-xl relative blur-2xl">
+          <span
+            class="absolute w-16 h-16 -top-1 -right-1 bg-[#FFC400] rounded-md rotate-45"
+          ></span>
+          <span
+            class="absolute w-16 h-16 -bottom-1 -right-1 bg-[#E5B300] rounded-md rotate-45"
+          ></span>
+          <span
+            class="absolute w-16 h-16 -bottom-1 -left-1 bg-[#BF9600] rounded-md rotate-45"
+          ></span>
+        </div>
+      </div>
+
+      <div class="absolute left-0 bottom-0 h-full w-full flex items-end">
+        <div class="w-28 h-28 overflow-auto flex rounded-xl relative blur-2xl">
+          <span
+            class="absolute w-16 h-16 -top-1 -right-1 bg-[#FFC400] rounded-md rotate-45"
+          ></span>
+          <span
+            class="absolute w-16 h-16 -bottom-1 -right-1 bg-[#E5B300] rounded-md rotate-45"
+          ></span>
+          <span
+            class="absolute w-16 h-16 -bottom-1 -left-1 bg-[#BF9600] rounded-md rotate-45"
+          ></span>
+        </div>
+      </div>
+
+      <div class="mx-auto text-center max-w-xl md:max-w-2xl relative">
+        <h1
+          class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight
+          font-bold text-heading-1"
+        >
+          Supercharge Your  
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-br from-[#FFC400] via-[#E5B300] to-[#BF9600]"
+          >
+            Machinery Sales
+          </span> 
+          Today
+        </h1>
+        <Paragraph className={"pt-10"}>
+          14-Day Free Trial | No Credit Card Needed | Only 8 Spots Per Month 
+        </Paragraph>
+        <div class="mx-auto max-w-md sm:max-w-xl pt-10">
+<div data-tf-live="01JGSHDGCP39X1M5JRGMW1YE6C"></div>
+<script is:inline src="//embed.typeform.com/next/embed.js"></script>
+
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

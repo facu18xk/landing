@@ -1,0 +1,412 @@
+---
+import MainLayout from "../layouts/LayoutNav.astro"; // Adjust the path if necessary
+import Button from "../components/shared/Button.astro";
+import Container from "../components/shared/Container.astro";
+import Paragraph from "../components/shared/Paragraph.astro";
+import Title from "../components/shared/Title.astro";
+import Navbar from "../components/elements/Navbar.astro";
+const getThemeStyle = (variant: "primary" | "secondary") => {
+  if (variant === "primary") {
+    return `bg-[#FFC400] text-white font-bold 
+                hover:bg-[#E5B300] hover:shadow-[0_0_15px_4px_#FFC400]`; // Glow effect
+  }
+  return `text-[#FFC400] font-bold 
+            hover:text-[#BF9600] hover:shadow-[0_0_10px_2px_#FFC400]`;
+};
+---
+
+<MainLayout title="ROI Rental Calculator with Bar Chart">
+  <section class="px-8 py-16">
+    <Container className="space-y-10 md:space-y-12 pt-12">
+      <!-- Calculator Form Section -->
+      <section
+        class="p-8 max-w-4xl mx-auto bg-white shadow-md rounded-md dark:bg-gray-800"
+      >
+        <Title>ROI Rental Calculator</Title>
+        <form id="roiForm" class="space-y-4 pt-6">
+          <div>
+            <label for="purchasePrice" class="block font-medium text-lg">
+              <Paragraph>How much did the machine cost?</Paragraph>
+            </label>
+            <input
+              type="number"
+              id="purchasePrice"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter purchase price in USD"
+              required
+            />
+          </div>
+
+          <!-- Additional form fields -->
+
+          <div>
+            <label for="lifespan" class="block font-medium text-lg">
+              <Paragraph
+                >In how many years do you plan to resell the machine?</Paragraph
+              ></label
+            >
+            <input
+              type="number"
+              min="1"
+              id="lifespan"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter lifespan in years"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="daysRented" class="block font-medium text-lg">
+              <Paragraph
+                >On average, how many days per month do you estimate the machine
+                will be rented?</Paragraph
+              >
+            </label>
+            <input
+              min="1"
+              type="number"
+              id="daysRented"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter average days rented"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="rentalRate" class="block font-medium text-lg">
+              <Paragraph>What’s the daily rental price?</Paragraph>
+            </label>
+            <input
+              min="1"
+              type="number"
+              id="rentalRate"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter rental price per day in USD"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="operationalCost" class="block font-medium text-lg">
+              <Paragraph
+                >What are the total monthly operating costs, including
+                maintenance, insurance, and other recurring expenses?</Paragraph
+              >
+            </label>
+            <input
+              min="1"
+              type="number"
+              id="operationalCost"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter monthly operational cost in USD"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="salvageValue" class="block font-medium text-lg">
+              <Paragraph
+                >What’s the expected resale value after the planned years of
+                usage?</Paragraph
+              >
+            </label>
+            <input
+              type="number"
+              id="salvageValue"
+              min="0"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter salvage value in USD"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            id="calculateRoi"
+            class={`px-6 py-3 rounded-full outline-none relative overflow-hidden duration-300 ease-linear
+            after:absolute after:inset-x-0 after:aspect-square after:scale-0 after:opacity-70 
+            after:origin-center after:duration-300 after:ease-linear after:rounded-full after:top-0 after:left-0
+            ${getThemeStyle("primary")} hover:after:opacity-100 hover:after:scale-[2.5]`}
+          >
+            Calculate
+          </button>
+        </form>
+        <div
+          class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6"
+        >
+          <!-- Chart Section -->
+          <div id="chartsSection" class="mt-8 hidden w-full lg:w-1/2">
+            <div
+              class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+            >
+              <div
+                class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3"
+              >
+                <dl>
+                  <dt
+                    class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1"
+                  >
+                    Profit
+                  </dt>
+                  <dd
+                    class="leading-none text-3xl font-bold text-gray-900 dark:text-white"
+                    id="profitValue"
+                  >
+                    $0
+                  </dd>
+                </dl>
+                <div>
+                  <span
+                    class="bg-green-100 text-green-800 text-s font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300"
+                    id="profitRate"
+                  >
+                    Profit rate 0%
+                  </span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 py-3">
+                <dl>
+                  <dt
+                    class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1"
+                  >
+                    Income
+                  </dt>
+                  <dd
+                    class="leading-none text-xl font-bold text-green-500 dark:text-green-400"
+                    id="revenueValue"
+                  >
+                    $0
+                  </dd>
+                </dl>
+                <dl>
+                  <dt
+                    class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1"
+                  >
+                    Expense
+                  </dt>
+                  <dd
+                    class="leading-none text-xl font-bold text-red-600 dark:text-red-500"
+                    id="costsValue"
+                  >
+                    $0
+                  </dd>
+                </dl>
+              </div>
+
+              <div id="bar-chart"></div>
+            </div>
+          </div>
+          <!-- Future profits section -->
+          <div
+            id="profitSection"
+            class="container mx-auto mt-8 p-6 rounded-lg shadow-lg hidden w-full lg:w-1/2"
+          >
+            <h2
+              class="text-2xl font-bold mb-4 text-gray-900 light:text-dark dark:text-white"
+            >
+              Increase Your Rentals, Increase Your Profit!
+            </h2>
+            <Paragraph>
+              If you rent <span class="font-semibold text-green-400"
+                >5 more days</span
+              > each month, you could pocket an additional <span
+                id="additionalEarnings"
+                class="font-semibold text-yellow-400">$0</span
+              > in profit this year!
+            </Paragraph>
+            <div
+              data-tf-live="01JGSGF6JHQ1SXK652WGN3KJRD"
+              class="flex justify-center mt-8"
+            >
+            </div>
+            <script is:inline src="//embed.typeform.com/next/embed.js"></script>
+          </div>
+        </div>
+      </section>
+    </Container>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script>
+    // Prevent the form from submitting and reloading the page
+    document
+      .getElementById("roiForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+
+    // Initialize chart variable to store the ApexCharts instance
+    let chart;
+
+    /**
+     * Updates or renders the bar chart with the given data.
+     * @param {number} revenue - Total revenue.
+     * @param {number} costs - Total costs.
+     * @param {number} profit - Total profit.
+     */
+    function updateChart(revenue, costs, profit) {
+      const options = {
+        series: [
+          { name: "Revenue", data: [revenue], color: "#31C48D" },
+          { name: "Costs", data: [costs], color: "#F05252" },
+          { name: "Profit", data: [profit], color: "#FFC107" },
+        ],
+        chart: {
+          type: "bar",
+          height: 400,
+          toolbar: { show: false },
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "50%",
+            borderRadius: 6,
+          },
+        },
+        legend: {
+          position: "top",
+          fontSize: "18px",
+          fontFamily: "Inter",
+          labels: {
+            colors: "gray",
+          },
+        },
+        xaxis: {
+          categories: ["Metrics"],
+          labels: {
+            style: {
+              fontFamily: "Inter, sans-serif",
+              cssClass: "text-xs font-normal text-gray-500 dark:text-gray-400",
+            },
+          },
+        },
+        grid: {
+          strokeDashArray: 4,
+        },
+      };
+
+      if (chart) {
+        chart.updateOptions(options);
+      } else {
+        chart = new ApexCharts(document.getElementById("bar-chart"), options);
+        chart.render();
+      }
+    }
+
+    /**
+     * Formats a number by rounding to the nearest integer and adding commas as thousand separators.
+     * @param {number} num - The number to format.
+     * @returns {string} - The formatted number.
+     */
+    const formatNumber = (num) => Math.round(num).toLocaleString();
+
+    /**
+     * Calculates ROI metrics based on the input values.
+     * @param {number} M - Purchase price.
+     * @param {number} Y - Lifespan in years.
+     * @param {number} D - Days rented per month.
+     * @param {number} R - Rental rate per day.
+     * @param {number} OC - Monthly operational cost.
+     * @param {number} S - Salvage value.
+     * @returns {object} - An object containing revenue, total costs, profit, and ROI.
+     */
+    function calculateRoi(M, Y, D, R, OC, S) {
+      const revenue = Y * 12 * D * R; // Total revenue
+      const totalCosts = M - S + Y * 12 * OC; // Total costs (depreciation + operational costs)
+      const profit = revenue - totalCosts; // Profit
+      const roi = (profit / M) * 100; // ROI percentage
+
+      return { revenue, totalCosts, profit, roi };
+    }
+
+    /**
+     * Renders the ROI results in the DOM.
+     * @param {number} profit - Calculated profit.
+     * @param {number} revenue - Calculated revenue.
+     * @param {number} totalCosts - Calculated total costs.
+     * @param {number} roi - Calculated ROI percentage.
+     */
+    function renderResults(profit, revenue, totalCosts, roi) {
+      document.getElementById("profitValue").textContent =
+        `$${formatNumber(profit)}`;
+      document.getElementById("revenueValue").textContent =
+        `$${formatNumber(revenue)}`;
+      document.getElementById("costsValue").textContent =
+        `-$${formatNumber(totalCosts)}`;
+      document.getElementById("profitRate").textContent =
+        `ROI: ${roi.toFixed(2)}%`;
+
+      // Show the charts section
+      document.getElementById("chartsSection").classList.remove("hidden");
+    }
+
+    /**
+     * Calculates additional earnings based on extra rental days.
+     * @param {number} D - Days rented per month.
+     * @param {number} R - Rental rate per day.
+     * @returns {number} - Additional profit from 5 extra days.
+     */
+    function calculateAdditionalEarnings(D, R) {
+      const extraDays = 5; // Fixed additional rental days
+      return extraDays * R * 12; // Additional earnings for 12 months
+    }
+
+    /**
+     * Shows the additional earnings section.
+     * @param {number} additionalEarnings - Calculated additional earnings.
+     */
+    function showProfitSection(additionalEarnings) {
+      // Update the additional earnings in the section
+      document.getElementById("additionalEarnings").textContent =
+        `$${formatNumber(additionalEarnings)}`;
+
+      // Show the profit section
+      document.getElementById("profitSection").classList.remove("hidden");
+    }
+
+    // Event listener for the "Calculate" button
+    document
+      .getElementById("calculateRoi")
+      .addEventListener("click", function () {
+        const M = parseFloat(document.getElementById("purchasePrice").value);
+        const Y = parseFloat(document.getElementById("lifespan").value);
+        const D = parseFloat(document.getElementById("daysRented").value);
+        const R = parseFloat(document.getElementById("rentalRate").value);
+        const OC = parseFloat(document.getElementById("operationalCost").value);
+        const S = parseFloat(document.getElementById("salvageValue").value);
+
+        // Validate inputs
+        if (
+          isNaN(M) ||
+          isNaN(Y) ||
+          isNaN(D) ||
+          isNaN(R) ||
+          isNaN(OC) ||
+          isNaN(S)
+        ) {
+          alert("Please fill in all fields with valid numbers.");
+          return;
+        }
+
+        // Perform ROI calculation
+        const { revenue, totalCosts, profit, roi } = calculateRoi(
+          M,
+          Y,
+          D,
+          R,
+          OC,
+          S,
+        );
+
+        // Update the chart and render results
+        updateChart(revenue, totalCosts, profit);
+        renderResults(profit, revenue, totalCosts, roi);
+
+        // Calculate additional earnings for 5 more rental days
+        const additionalEarnings = calculateAdditionalEarnings(D, R);
+
+        // Show the additional profit section
+        showProfitSection(additionalEarnings);
+      });
+  </script>
+</MainLayout>

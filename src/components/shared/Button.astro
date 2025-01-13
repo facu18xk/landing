@@ -1,0 +1,22 @@
+---
+export interface Props {
+    className?: string,
+    variant: "primary" | "secondary",
+}
+
+const { className, variant} = Astro.props
+
+const getThemeStyle = (variant: "primary" | "secondary") => {
+    if (variant === "primary") {
+        return `bg-[#FFC400] text-white font-bold 
+                hover:bg-[#E5B300] hover:shadow-[0_0_15px_4px_#FFC400]` // Glow effect
+    }
+    return `text-[#FFC400] font-bold 
+            hover:text-[#BF9600] hover:shadow-[0_0_10px_2px_#FFC400]`
+}
+---
+<button class={`px-6 py-3 rounded-full outline-none relative overflow-hidden duration-300 ease-linear
+                    after:absolute after:inset-x-0 after:aspect-square after:scale-0 after:opacity-70 after:origin-center after:duration-300 after:ease-linear after:rounded-full after:top-0 after:left-0
+                    ${getThemeStyle(variant)} hover:after:opacity-100 hover:after:scale-[2.5] ${className}`}>
+    <slot/>
+</button>

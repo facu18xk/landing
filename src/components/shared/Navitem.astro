@@ -1,0 +1,18 @@
+---
+export interface Props{
+    href: string,
+    text: string,
+}
+const { href, text } = Astro.props
+---
+<style>
+    .hover-yellow-cat:hover {
+        color: #FFD700; /* Replace with the exact yellow color you want */
+    }
+</style>
+
+<li>
+    <a href={href} class="duration-300 font-medium ease-linear py-3 hover-yellow-cat">
+        {text}
+    </a>
+</li>

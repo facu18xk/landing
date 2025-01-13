@@ -1,0 +1,35 @@
+---
+import MainLayout from "../layouts/Layout.astro"; // Adjust if your layout is in a different folder
+import Container from "../components/shared/Container.astro";
+import Title from "../components/shared/Title.astro";
+import Paragraph from "../components/shared/Paragraph.astro";
+import Service from "../components/cards/Service.astro";
+import Navbar from "../components/elements/Navbar.astro";
+import { resources } from "../utils/data.ts";
+---
+
+<MainLayout title="Resources">
+  <section class="px-8 py-16">
+    <a href=""></a>
+    <Container className="space-y-10 md:sapce-y-12 pt-20">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <Title> Tools to Maximize Your Machinery Profits </Title>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {
+          resources.map((resources) => {
+            return (
+              <a href={resources.url}>
+                <Service
+                  title={resources.title}
+                  description={resources.description}
+                  icon={resources.icon}
+                />
+              </a>
+            );
+          })
+        }
+      </div>
+    </Container>
+  </section>
+</MainLayout>
